@@ -6,25 +6,34 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
   
-    // Load saved theme
-    if (localStorage.getItem("theme") === "light") {
-      document.body.classList.add("light-mode");
-      themeToggle.textContent = "🌙 Dark Mode";
-    } else {
-      themeToggle.textContent = "🌙 Light Mode";
+    
+    
+  });
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const closeMenu = document.getElementById("close-menu");
+    const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+    const mobileMenuPanel = document.getElementById("mobile-menu-panel");
+    const menuBackdrop = document.getElementById("menu-backdrop");
+  
+    function openMenu() {
+      mobileMenuOverlay.classList.remove("hidden");
+      requestAnimationFrame(() => {
+        menuBackdrop.classList.add("opacity-50");
+        mobileMenuPanel.classList.remove("translate-x-full"); // note: positive for right
+      });
     }
   
-    // Toggle theme on click
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("light-mode");
+    function closeMenuFunc() {
+      menuBackdrop.classList.remove("opacity-50");
+      mobileMenuPanel.classList.add("translate-x-full");
+      setTimeout(() => {
+        mobileMenuOverlay.classList.add("hidden");
+      }, 300);
+    }
   
-      if (document.body.classList.contains("light-mode")) {
-        localStorage.setItem("theme", "light");
-        themeToggle.textContent = "🌙 Dark Mode";
-      } else {
-        localStorage.setItem("theme", "dark");
-        themeToggle.textContent = "🌙 Light Mode";
-      }
-    });
+    menuToggle.addEventListener("click", openMenu);
+    closeMenu.addEventListener("click", closeMenuFunc);
+    menuBackdrop.addEventListener("click", closeMenuFunc);
   });
-  
+ 

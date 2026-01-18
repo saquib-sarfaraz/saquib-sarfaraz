@@ -9,7 +9,7 @@ tailwind.config = {
               void: '#0B0D12',
               glass: 'rgba(255, 255, 255, 0.03)',
               border: 'rgba(255, 255, 255, 0.08)',
-              holoCyan: '#38BDF8',
+              holoCyan: '#3F9AAE',
               electricBlue: '#0EA5E9',
               neonViolet: '#818CF8',
           },
